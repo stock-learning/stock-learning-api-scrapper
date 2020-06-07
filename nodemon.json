@@ -1,0 +1,11 @@
+{
+    "ignore": [],
+    "watch": ["src"],
+    "exec": "tsc -p . && node dist/app.js",
+    "ext": "ts",
+    "env": {
+      "PORT": 3000,
+      "RABBITMQ_CONNECTION_STRING": "amqp://localhost",
+      "GOOGLE_NEWS_API_KEY": "4c80989ed1a14a33b3d1297901dcff70"
+    }
+  }

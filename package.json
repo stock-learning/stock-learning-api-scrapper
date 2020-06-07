@@ -1,0 +1,40 @@
+{
+  "name": "stock-learning-api-scrapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && nodemon dist/src/app.js",
+    "clean": "if exist dist rmdir dist /S /Q",
+    "build": "npm run clean && tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chsponciano/stock-learning-api-scrapping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chsponciano/stock-learning-api-scrapping/issues"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "nodemon": "^2.0.2",
+    "tslint": "^6.1.0",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/axios": "^0.14.0",
+    "@types/moment": "^2.13.0",
+    "@types/twit": "^2.2.24",
+    "aws-sdk": "^2.691.0",
+    "axios": "^0.19.2",
+    "moment": "^2.26.0",
+    "newsapi": "^2.4.0",
+    "stock-learning-rabbitmq": "0.0.15",
+    "ts-newsapi": "^1.0.0",
+    "tsc": "^1.20150623.0",
+    "twit": "^2.2.11"
+  }
+}
