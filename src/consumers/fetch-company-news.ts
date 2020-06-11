@@ -11,7 +11,6 @@ export class FetchCompanyNews implements IConsumer<any> {
 
     public async consume(message: any): Promise<any> {
         if (message.companies?.length) {
-
             const result = message.companies
                 .filter((companyRequestData: any) => !!companyRequestData.companyName && !!companyRequestData.companyInitials)
                 .flatMap(async (companyRequestData: any) => {
