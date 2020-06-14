@@ -32,7 +32,7 @@
     "axios": "^0.19.2",
     "moment": "^2.26.0",
     "newsapi": "^2.4.0",
-    "stock-learning-rabbitmq": "0.0.15",
+    "stock-learning-rabbitmq": "0.0.20",
     "ts-newsapi": "^1.0.0",
     "tsc": "^1.20150623.0",
     "twit": "^2.2.11"

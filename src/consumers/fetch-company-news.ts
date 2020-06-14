@@ -25,8 +25,6 @@ export class FetchCompanyNews implements IConsumer<any> {
                     });
             });
             const re = await Promise.all(result);
-            console.log(JSON.stringify(re))
-            // console.log(result.map((r: any) => JSON.stringify(r)));
             if (result?.length) {
                 RabbitMQServer.getInstance().getApiStub().companyNews({ companyNews: result });
             }
