@@ -1,7 +1,7 @@
-// import { BatchDetectSentimentItemResult } from 'aws-sdk/clients/comprehend';
-// import awsController from 'src/controllers/aws-controller';
+import { BatchDetectSentimentItemResult } from 'aws-sdk/clients/comprehend';
 import { IConsumer } from 'stock-learning-rabbitmq/lib/server/iconsumer';
 import { RabbitMQServer } from 'stock-learning-rabbitmq/lib/server/rabbitmq-server';
+import awsController from '../controllers/aws-controller';
 import twitterController from '../controllers/twitter-controller';
 import { TwitterQueryBuilder } from './../builder/twitter-query-builder';
 import { cleanText } from "./../utils/string-utils";
@@ -29,11 +29,11 @@ export class FetchTweetsByAccount implements IConsumer<any> {
                 }
             });
 
-            // const sentences = tweets.map((tweet: any) => tweet.cleanText);
-            // const sentiments = (await awsController.detectSentimentPortuguese(sentences)).ResultList;
-            // sentiments.forEach((sentiment: BatchDetectSentimentItemResult) => {
-            //     tweets[sentiment.Index].sentiment = sentiment.Sentiment;
-            // });
+            const sentences = tweets.map((tweet: any) => tweet.cleanText);
+            const sentiments = (await awsController.detectSentimentPortuguese(sentences)).ResultList;
+            sentiments.forEach((sentiment: BatchDetectSentimentItemResult) => {
+                tweets[sentiment.Index].sentiment = sentiment.Sentiment;
+            });
 
             RabbitMQServer.getInstance().getApiStub().persistTweets({ tweets });
         }

@@ -5,12 +5,18 @@ export class AWSController {
 
     private _comprehend: Comprehend;
 
-    public constructor() {
-        this._comprehend = new Comprehend();
+    public constructor(params: AWSControllerParams) {
+        this._comprehend = new Comprehend(params);
     }
 
     public detectSentimentPortuguese(sentences: string[]): Promise<Comprehend.Types.BatchDetectSentimentResponse> {
-        if (sentences.length === 0 || sentences.length > 25) {
+        if (!sentences?.length) {
+            return new Promise((resolve) => resolve({
+                ResultList: [],
+                ErrorList: [],
+            }));
+        }
+        if (sentences.length > 25) {
             return new Promise((_, reject) => reject(new Error('List size is greater than 25')))
         }
         return new Promise((resolve, reject) => {
@@ -29,4 +35,14 @@ export class AWSController {
 
 }
 
-export default new AWSController();
+export default new AWSController({
+    region: process.env.AWS_REGION || '',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+});
+
+export interface AWSControllerParams {
+    region: string;
+    accessKeyId: string;
+    secretAccessKey: string;
+}

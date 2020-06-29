@@ -18,6 +18,7 @@ export class NewsApiController {
     }
 
     public getEverything(params?: INewsApiEverythingParams): Promise<INewsApiResponse> {
+        console.log(JSON.stringify(params));
         return this._newsApi.getEverything(params);
     }
 
